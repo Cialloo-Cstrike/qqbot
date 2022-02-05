@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Feb  5 14:40:52 2022
+# Make data base, printed on Sat Feb  5 15:25:02 2022
 
 # Variables
 
@@ -197,7 +197,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9cea3ac9-18bd-43f7-bd51-f21cbe073bbc.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cd5f18db-5b3a-40d0-ab5a-8ca9635ec472.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -217,7 +217,7 @@ LC_TELEPHONE = en_US.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/cialloo/repo/qqbot_css
+OLDPWD = /home/cialloo
 # default
 .VARIABLES := 
 # automatic
@@ -263,11 +263,11 @@ LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/76ee2584_327a_497d_b068_aa245e48c6f4
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/ca4a8ed4_ccce_4d14_a116_0723c6ee5011
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.1661
+GNOME_TERMINAL_SERVICE = :1.1902
 # default
 SUFFIXES := 
 # environment
@@ -276,7 +276,6 @@ SNAP_REEXEC =
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
 WINDOWPATH = 2
- 
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -292,7 +291,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 15187
+VSCODE_PID = 18266
 # variable set hash-table stats:
 # Load=140/1024=14%, Rehash=0, Collisions=22/162=14%
 
@@ -302,6 +301,7 @@ VSCODE_PID = 15187
 
 # Directories
 
+ 
 # . (device 66309, inode 1934615): 8 files, no impossibilities.
 
 # 8 files, no impossibilities in 1 directories.
@@ -360,6 +360,6 @@ GNUmakefile:
 # strcache performance: lookups = 19 / hit rate = 15%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/19=5%
-# Finished Make data base on Sat Feb  5 14:40:52 2022
+# Finished Make data base on Sat Feb  5 15:25:02 2022
 
  

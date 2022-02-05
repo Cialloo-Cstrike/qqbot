@@ -3,7 +3,7 @@ CXX = g++
 
 
 server : server.cpp
-	@$(CXX) $< -o $@
+	@$(CXX) $< -o output/$@
 
 .PHONY : clean
 

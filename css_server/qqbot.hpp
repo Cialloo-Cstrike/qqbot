@@ -4,6 +4,12 @@
 #include <cstdio>
 #include "engine/iserverplugin.h"
 #include "igameevents.h"
+#include "tier2/tier2.h"
+#include "convar.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 
 class QQBot: public IServerPluginCallbacks, public IGameEventListener2
 {
@@ -12,8 +18,8 @@ public:
 	~QQBot(){}
 
 	// IServerPluginCallbacks methods
-	virtual bool			Load(	CreateInterfaceFn interfaceFactory, CreateInterfaceFn gameServerFactory ){return true;}
-	virtual void			Unload( void ){}
+	virtual bool			Load(	CreateInterfaceFn interfaceFactory, CreateInterfaceFn gameServerFactory );
+	virtual void			Unload( void );
 	virtual void			Pause( void ){}
 	virtual void			UnPause( void ){}
 	virtual const char     *GetPluginDescription( void ){return "qqbot-plugin-version-1.0.1\n";}     
@@ -39,5 +45,8 @@ public:
 
 QQBot g_ServerPlugin;
 EXPOSE_SINGLE_INTERFACE_GLOBALVAR(QQBot, IServerPluginCallbacks, INTERFACEVERSION_ISERVERPLUGINCALLBACKS, g_ServerPlugin );
+
+
+void CreateClientSocket();
 
 #endif
