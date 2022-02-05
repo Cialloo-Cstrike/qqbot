@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/cialloo/repo/qqbot_css'
+make: Leaving directory '/home/cialloo/repo/qqbot_css'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+ 

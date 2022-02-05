@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ master, dev/*, feature/* ]
+  push:
+    branches: [ master, dev/*, feature/* ]
+    
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    env:
+      BUILD_TYPE: Release
+      CC: ${{ matrix.config.cc }}
+      CXX: ${{ matrix.config.cxx }}
+    strategy:
+      matrix:
+        config:
+          - name: Windows Latest MSVC
+            os: windows-latest
+            cc: cl
+            cxx: cl
+            cmake_args: ""
+          #- name: Windows Latest MinGW
+          #  os: windows-latest
+          #  cc: gcc
+          #  cxx: g++
+          #  cmake_args: -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+          - name: Ubuntu Latest GCC
+            os: ubuntu-latest
+            cc: gcc
+            cxx: g++
+            cmake_args: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+          - name: macOS Latest Clang
+            os: macos-latest
+            cc: clang
+            cxx: clang++
+            cmake_args: ""
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/build
+
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{github.workspace}}/build
+      # Note the current convention is to use the -S and -B options here to specify source 
+      # and build directories, but this is only available with CMake 3.13 and higher.  
+      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE ${{ matrix.config.cmake_args }}
+
+    - name: Build
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: cmake --build . --config $BUILD_TYPE
