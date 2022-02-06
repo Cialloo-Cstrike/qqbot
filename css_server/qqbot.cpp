@@ -23,6 +23,18 @@ void QQBot::Unload( void )
 	close(g_sockfd);
 }
 
+void QQBot::LevelInit( char const *pMapName )
+{
+	pthread_t sendmsg;
+	pthread_create(&sendmsg, NULL, SendMapInfo, NULL);
+}
+
+void* SendMapInfo(void* args)
+{
+	
+	return 0;
+}
+
 void CreateClientSocket()
 {
 	g_sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);

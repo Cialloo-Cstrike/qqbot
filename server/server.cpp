@@ -1,3 +1,4 @@
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -55,6 +56,9 @@ int main()
     int max_fd = listenfd;
 
     std::vector<int> array_fd;
+
+    pthread_t thread;
+    pthread_create(&thread, NULL, SendNull, (void*)&array_fd);
 
     while(true)
     {
@@ -139,4 +143,9 @@ int main()
             }
         }
     }
+}
+
+void* SendNull(void* args)
+{
+    return 0;
 }

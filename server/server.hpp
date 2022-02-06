@@ -3,6 +3,8 @@
 
 #include <string>
 
+void* SendNull(void* args);
+
 struct css_server
 {
     char map[256];

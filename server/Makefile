@@ -1,11 +1,11 @@
 SRC = server.cpp
 CXX = g++
-
+LIB = -lpthread
 
 server : server.cpp
-	@$(CXX) $< -o output/$@
+	@$(CXX) $< -o output/$@ $(LIB)
 
 .PHONY : clean
 
 clean :
-	@rm -rf server
+	@rm -rf output/server

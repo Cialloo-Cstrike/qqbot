@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Feb  6 07:22:25 2022
+# Make data base, printed on Sun Feb  6 19:23:21 2022
 
 # Variables
 
@@ -53,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48499
+JOURNAL_STREAM = 8:28582
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -79,7 +79,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1625
+MANAGERPID = 1586
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -95,7 +95,7 @@ PATH = /home/cialloo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Computer:@/tmp/.ICE-unix/1828,unix/Computer:/tmp/.ICE-unix/1828
+SESSION_MANAGER = local/Computer:@/tmp/.ICE-unix/1790,unix/Computer:/tmp/.ICE-unix/1790
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -113,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=cf513a4f-af37-4b64-a827-5279ea8eedd9&iid=cf513a4f-af37-4b64-a827-5279ea8eedd9&sid=cf513a4f-af37-4b64-a827-5279ea8eedd9","uploadToServer":true}
 # environment
-INVOCATION_ID = 81d612223301448ab139f05c267da170
+INVOCATION_ID = b4eead06e2414c21a1eb9689385e0111
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/86/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -139,7 +139,7 @@ PWD = /home/cialloo/repo/qqbot_css
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1799
+SSH_AGENT_PID = 1762
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -197,7 +197,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e3148a95-05e8-4d8d-b163-5ce96703be3f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b5ebda31-acd0-4487-8e92-ddf85bf78a73.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -241,8 +241,6 @@ GDK_BACKEND = x11
 # environment
 LC_PAPER = en_US.UTF-8
 # environment
-NO_AT_BRIDGE = 1
-# environment
 LC_IDENTIFICATION = en_US.UTF-8
 # environment
 QT_ACCESSIBILITY = 1
@@ -265,20 +263,20 @@ LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/37052065_0def_4e9c_afb7_2a93b98289d3
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/dd70715f_2138_4abc_8dbe_c6e93c54e334
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.110
+GNOME_TERMINAL_SERVICE = :1.107
 # default
 SUFFIXES := 
 # environment
 SNAP_REEXEC = 
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
- 
 # environment
 WINDOWPATH = 2
+ 
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -294,9 +292,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 2920
+VSCODE_PID = 2290
 # variable set hash-table stats:
-# Load=141/1024=14%, Rehash=0, Collisions=22/163=13%
+# Load=140/1024=14%, Rehash=0, Collisions=22/162=14%
 
 # Pattern-specific Variable Values
 
@@ -304,9 +302,9 @@ VSCODE_PID = 2920
 
 # Directories
 
-# . (device 66309, inode 1934615): 8 files, no impossibilities.
+# . (device 66309, inode 1934615): 10 files, no impossibilities.
 
-# 8 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -356,12 +354,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 16 / storage = 137 B / avg = 8 B
-# current buf: size = 8162 B / used = 137 B / count = 16 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 158 B / avg = 8 B
+# current buf: size = 8162 B / used = 158 B / count = 18 / avg = 8 B
 
-# strcache performance: lookups = 19 / hit rate = 15%
+# strcache performance: lookups = 21 / hit rate = 14%
 # hash-table stats:
-# Load=16/8192=0%, Rehash=0, Collisions=1/19=5%
-# Finished Make data base on Sun Feb  6 07:22:25 2022
+# Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
+# Finished Make data base on Sun Feb  6 19:23:21 2022
 
  

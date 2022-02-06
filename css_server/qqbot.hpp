@@ -10,6 +10,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <pthread.h>
+
+void CreateClientSocket();
+void* SendMapInfo(void* args);
 
 class QQBot: public IServerPluginCallbacks, public IGameEventListener2
 {
@@ -23,7 +27,7 @@ public:
 	virtual void			Pause( void ){}
 	virtual void			UnPause( void ){}
 	virtual const char     *GetPluginDescription( void ){return "qqbot-plugin-version-1.0.1\n";}     
-	virtual void			LevelInit( char const *pMapName ){}
+	virtual void			LevelInit( char const *pMapName );
 	virtual void			ServerActivate( edict_t *pEdictList, int edictCount, int clientMax ){}
 	virtual void			GameFrame( bool simulating ){}
 	virtual void			LevelShutdown( void ){}
@@ -46,7 +50,5 @@ public:
 QQBot g_ServerPlugin;
 EXPOSE_SINGLE_INTERFACE_GLOBALVAR(QQBot, IServerPluginCallbacks, INTERFACEVERSION_ISERVERPLUGINCALLBACKS, g_ServerPlugin );
 
-
-void CreateClientSocket();
 
 #endif
