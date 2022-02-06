@@ -98,40 +98,41 @@ int main()
                 m_connfd, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
                 array_fd.push_back(m_connfd);
             }
+        }
 
-            for(auto it = array_fd.begin(); it < array_fd.end(); it++)
+        for(auto it = array_fd.begin(); it < array_fd.end(); it++)
+        {
+            if (*it < 0)
             {
-                if (*it < 0)
+                continue;
+            }
+
+            if (FD_ISSET(*it, &tmpfd))
+            {
+                char buffer[256];
+                int recv_len = recv(*it, buffer, sizeof(buffer) - 1, 0);
+
+                if(recv_len < 0)
                 {
+                    printf("Receive data fail.\n");
                     continue;
                 }
-
-                if (FD_ISSET(*it, &tmpfd))
+                else if(recv_len == 0)      // socket disconnect.
                 {
-                    char buffer[256];
-                    int recv_len = recv(*it, buffer, sizeof(buffer) - 1, 0);
-
-                    if(recv_len < 0)
-                    {
-                        printf("Receive data fail.\n");
-                        continue;
-                    }
-                    else if(recv_len == 0)      // socket disconnect.
-                    {
-                        printf("client_socket=[%d] close, ip=%s, port=%d\n\n", 
-                        *it, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
-                        close(*it);
-                        FD_CLR(*it, &tmpfd);
-                        array_fd.erase(it);
-                    }
-                    else
-                    {
-                        printf("server recv:%s\n", buffer);
-                        /***      Edit server function here.      */
+                    printf("client_socket=[%d] close, ip=%s, port=%d\n\n", 
+                    *it, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+                    close(*it);
+                    FD_CLR(*it, &tmpfd);
+                    array_fd.erase(it);
+                }
+                else
+                {
+                    buffer[recv_len] = '\0';
+                    printf("server recv:%s\n", buffer);
+                    /***      Edit server function here.      */
 
 
 
-                    }
                 }
             }
         }
