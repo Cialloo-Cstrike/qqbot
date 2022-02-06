@@ -5,11 +5,22 @@
 
 void* SendNull(void* args);
 
+// this structure can only be used by server.
+struct player_info
+{
+    char name[64];
+    char steamid[64];
+};
+
+
 struct css_server
 {
+    char ip[64];
+    char name[128];
     char map[256];
+    int port;
     int player_count;
-    std::vector<std::string> player_list;
+    std::vector<player_info> player_list;
 };
 
 #endif

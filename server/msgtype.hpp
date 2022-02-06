@@ -3,13 +3,14 @@
 
 
 
-enum MessageType
+enum MessageType_QQ
 {
     NOMSG,
     CHANGEMAP,
     SERVERMSG,
     QQMSG,
-    PLAYERCONNECT
+    PLAYERCONNECT,
+    SERVERNAME
     /*
     0 = null (just for maintain the connection)
     1 = changelevel (game server send the map info to relay server)

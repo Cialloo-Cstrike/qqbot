@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "server.hpp"
+#include "msgtype.hpp"
 
 #define QQ_PORT 51000
 
@@ -56,6 +57,7 @@ int main()
     int max_fd = listenfd;
 
     std::vector<int> array_fd;
+    std::vector<css_server> server;
 
     pthread_t thread;
     pthread_create(&thread, NULL, SendNull, (void*)&array_fd);
@@ -135,10 +137,37 @@ int main()
                 {
                     buffer[recv_len] = '\0';
                     printf("server recv:%s\n", buffer);
+                
                     /***      Edit server function here.      */
+                    
+                    int num = atoi(&buffer[0]);
+                    buffer[0] = ' ';
+                    
+                    switch(num)
+                    {
+                        case NOMSG:
+                        {
+                            // null message. do nothing.
+                        }
+                        case CHANGEMAP:
+                        {
+                            for(auto it = server.begin(); it < server.end(); it++)
+                            {
+                                
+                            }
+                        }
+                        case SERVERNAME:
+                        {
+                            // initialize a new server structure.
+                            css_server newServer;
+                            newServer.player_count = 0;
+                            newServer.port = ntohs(client_addr.sin_port);
+                            sprintf(newServer.ip, inet_ntoa(client_addr.sin_addr));
+                            sprintf(newServer.name, buffer);
 
-
-
+                            server.emplace_back(newServer);
+                        }
+                    }
                 }
             }
         }

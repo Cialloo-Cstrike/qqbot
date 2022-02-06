@@ -116,5 +116,11 @@ void CreateClientSocket()
 		return;
 	}
 
+	char buffer[128];
+	sprintf(buffer, "%d%s", SERVERNAME, g_engine->GetIServer()->GetName());
+
+	int check = -1;
+	check = send(g_sockfd, buffer, sizeof(buffer), 0);
+
 	printf("\nIt's time to send msg to server. \n");
 }
