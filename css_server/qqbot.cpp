@@ -14,6 +14,16 @@ bool QQBot::Load(	CreateInterfaceFn interfaceFactory, CreateInterfaceFn gameServ
 
 	g_engine = (IVEngineServer*)interfaceFactory(INTERFACEVERSION_VENGINESERVER, NULL);
 
+	if(!g_engine)
+	{
+		printf("\nLoad interface failed.\n");
+		return false;
+	}
+	else
+	{
+		printf("\nLoad interface successful.\n");
+	}
+
 	CreateClientSocket();
 
 	MathLib_Init( 2.2f, 2.2f, 0.0f, 2.0f );
@@ -37,10 +47,40 @@ void* SendMapInfo(void* args)
 {
 	char buffer[256];
 	sprintf(buffer, "%d%s", CHANGEMAP, g_engine->GetIServer()->GetMapName());
-	
-	send(g_sockfd, buffer, sizeof(buffer), 0);
+
+	int check = -1;
+	check = send(g_sockfd, buffer, sizeof(buffer), 0);
+
+	if(check == -1)
+	{
+		printf("Send map info failed.\n");
+	}
 
 	return 0;
+}
+
+void QQBot::ClientActive( edict_t *pEntity )
+{
+	pthread_t sendpinfo;
+	pthread_create(&sendpinfo, NULL, SendPlayerInfo, (void*)pEntity);
+}
+
+void* SendPlayerInfo(void* args)
+{
+	//pEntity == (edict_t*)args;
+	player_info_t info;
+	g_engine->GetPlayerInfo(g_engine->IndexOfEdict((edict_t*)args), &info);
+	
+	char buffer[256];
+	sprintf(buffer, "%d", PLAYERCONNECT);
+
+	int check = -1;
+	check = send(g_sockfd, buffer, sizeof(buffer), 0);
+
+	if(check == -1)
+	{
+		printf("Send player connect info failed.\n");
+	}
 }
 
 void CreateClientSocket()
