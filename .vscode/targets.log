@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Feb  5 15:25:02 2022
+# Make data base, printed on Sun Feb  6 07:22:25 2022
 
 # Variables
 
@@ -53,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:41561
+JOURNAL_STREAM = 8:48499
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -79,7 +79,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1648
+MANAGERPID = 1625
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -95,7 +95,7 @@ PATH = /home/cialloo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Computer:@/tmp/.ICE-unix/1851,unix/Computer:/tmp/.ICE-unix/1851
+SESSION_MANAGER = local/Computer:@/tmp/.ICE-unix/1828,unix/Computer:/tmp/.ICE-unix/1828
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -113,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=cf513a4f-af37-4b64-a827-5279ea8eedd9&iid=cf513a4f-af37-4b64-a827-5279ea8eedd9&sid=cf513a4f-af37-4b64-a827-5279ea8eedd9","uploadToServer":true}
 # environment
-INVOCATION_ID = 3c6fbc13936c482ab7037a079c6a520a
+INVOCATION_ID = 81d612223301448ab139f05c267da170
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/86/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -139,7 +139,7 @@ PWD = /home/cialloo/repo/qqbot_css
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1822
+SSH_AGENT_PID = 1799
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -197,7 +197,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cd5f18db-5b3a-40d0-ab5a-8ca9635ec472.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e3148a95-05e8-4d8d-b163-5ce96703be3f.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -241,6 +241,8 @@ GDK_BACKEND = x11
 # environment
 LC_PAPER = en_US.UTF-8
 # environment
+NO_AT_BRIDGE = 1
+# environment
 LC_IDENTIFICATION = en_US.UTF-8
 # environment
 QT_ACCESSIBILITY = 1
@@ -263,17 +265,18 @@ LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/ca4a8ed4_ccce_4d14_a116_0723c6ee5011
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/37052065_0def_4e9c_afb7_2a93b98289d3
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.1902
+GNOME_TERMINAL_SERVICE = :1.110
 # default
 SUFFIXES := 
 # environment
 SNAP_REEXEC = 
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
+ 
 # environment
 WINDOWPATH = 2
 # default
@@ -291,9 +294,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 18266
+VSCODE_PID = 2920
 # variable set hash-table stats:
-# Load=140/1024=14%, Rehash=0, Collisions=22/162=14%
+# Load=141/1024=14%, Rehash=0, Collisions=22/163=13%
 
 # Pattern-specific Variable Values
 
@@ -301,7 +304,6 @@ VSCODE_PID = 18266
 
 # Directories
 
- 
 # . (device 66309, inode 1934615): 8 files, no impossibilities.
 
 # 8 files, no impossibilities in 1 directories.
@@ -360,6 +362,6 @@ GNUmakefile:
 # strcache performance: lookups = 19 / hit rate = 15%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/19=5%
-# Finished Make data base on Sat Feb  5 15:25:02 2022
+# Finished Make data base on Sun Feb  6 07:22:25 2022
 
  
