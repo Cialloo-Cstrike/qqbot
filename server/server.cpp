@@ -60,8 +60,6 @@ int main()
     pthread_t thread;
     pthread_create(&thread, NULL, SendNull, (void*)&array_fd);
 
-    printf("The array_fd's pointer is %p\n", &array_fd);
-
     while(true)
     {
         FD_ZERO(&tmpfd);
@@ -150,6 +148,27 @@ int main()
 void* SendNull(void* args)
 {
     std::vector<int> &array_fd = *((std::vector<int>*)args);
+
+    while(true)
+    {
+        for(auto it = array_fd.begin(); it < array_fd.end(); it++)
+        {
+            if(*it < 0)
+            {
+                array_fd.erase(it);
+                continue; //it should not happen.
+            }
+
+            int check = -1;
+            check = send(*it, "0", 10, 0);
+
+            if(check == -1)
+            {
+                printf("Send null error.\n");
+                continue;
+            }
+        }
+    }
 
     return 0;
 }
