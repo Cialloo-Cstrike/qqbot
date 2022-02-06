@@ -5,10 +5,14 @@
 
 int g_sockfd = -1;
 
+IVEngineServer *g_engine = NULL;
+
 bool QQBot::Load(	CreateInterfaceFn interfaceFactory, CreateInterfaceFn gameServerFactory )
 {
 	ConnectTier1Libraries( &interfaceFactory, 1 );
 	ConnectTier2Libraries( &interfaceFactory, 1 );
+
+	g_engine = (IVEngineServer*)interfaceFactory(INTERFACEVERSION_VENGINESERVER, NULL);
 
 	CreateClientSocket();
 
@@ -31,7 +35,11 @@ void QQBot::LevelInit( char const *pMapName )
 
 void* SendMapInfo(void* args)
 {
+	char buffer[256];
+	sprintf(buffer, "%d%s", CHANGEMAP, g_engine->GetIServer()->GetMapName());
 	
+	send(g_sockfd, buffer, sizeof(buffer), 0);
+
 	return 0;
 }
 

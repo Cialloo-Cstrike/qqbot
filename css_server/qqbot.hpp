@@ -11,6 +11,9 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <eiface.h>
+#include <iserver.h>
+#include "msgtype.hpp"
 
 void CreateClientSocket();
 void* SendMapInfo(void* args);
