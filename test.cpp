@@ -37,7 +37,14 @@ int main(int argc, char** argv){
         return 0;
     }
 
-    printf("send msg to server: \n");
+    //printf("send msg to server: \n");
+
+    while(true)
+    {
+        char buffer[256];
+        recv(sockfd, buffer, sizeof(buffer), 0);
+        printf("Receive data from server: %s\n", buffer);
+    }
 
     while(true)
     {

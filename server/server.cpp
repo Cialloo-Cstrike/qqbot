@@ -60,6 +60,8 @@ int main()
     pthread_t thread;
     pthread_create(&thread, NULL, SendNull, (void*)&array_fd);
 
+    printf("The array_fd's pointer is %p\n", &array_fd);
+
     while(true)
     {
         FD_ZERO(&tmpfd);
@@ -147,5 +149,7 @@ int main()
 
 void* SendNull(void* args)
 {
+    std::vector<int> &array_fd = *((std::vector<int>*)args);
+
     return 0;
 }
