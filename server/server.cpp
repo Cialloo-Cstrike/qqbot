@@ -9,6 +9,8 @@
 #include <unistd.h>
 #include <vector>
 
+#include "server.hpp"
+
 #define QQ_PORT 51000
 
 int main()
