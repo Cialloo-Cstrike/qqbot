@@ -2,9 +2,4 @@
 
 // TODO: 随便写一些代码
 
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-
-void CreateClientSocket();
+#include <srcon.h>

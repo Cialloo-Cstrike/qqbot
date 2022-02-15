@@ -1,8 +1,8 @@
 #pragma once
 #ifndef mirai_cpp_defs_messages_image_message_hpp_H_
 #define mirai_cpp_defs_messages_image_message_hpp_H_
-#include "mirai/defs/message_interface.hpp"
-#include "mirai/defs/qq_types.hpp"
+#include "mirai/defs/IMessage.hpp"
+#include "mirai/defs/QQType.hpp"
 
 namespace Cyan
 {
@@ -11,12 +11,13 @@ namespace Cyan
 	public:
 		ImageMessage() {}
 		ImageMessage(const MiraiImage& m) : imageId_(m.Id), url_(m.Url), path_(m.Path) {}
-		ImageMessage(const ImageMessage& m) : imageId_(m.imageId_), url_(m.url_), path_(m.path_) {}
+		ImageMessage(const ImageMessage& m) : imageId_(m.imageId_), url_(m.url_), path_(m.path_), base64_(m.base64_) {}
 		ImageMessage(ImageMessage&& m) noexcept
 		{
 			std::swap(this->imageId_, m.imageId_);
 			std::swap(this->url_, m.url_);
 			std::swap(this->path_, m.path_);
+			std::swap(this->base64_, m.base64_);
 		}
 		virtual const string& GetType() const override
 		{
@@ -41,7 +42,12 @@ namespace Cyan
 				{
 					return (m_ptr->path_ == this->path_);
 				}
-				// 三个参数都为空，两个空的 ImageMessage 当然是相等的：
+				// 如果 path 都为空，那么用 base64 再判断一下
+				if (!m_ptr->base64_.empty() || !this->base64_.empty())
+				{
+					return (m_ptr->base64_ == this->base64_);
+				}
+				// 所有参数都为空，两个空的 ImageMessage 当然是相等的：
 				return true;
 			}
 			// 类型都不同，直接不相等：
@@ -61,16 +67,19 @@ namespace Cyan
 				url_ = json["url"].get<string>();
 			if (!json["path"].is_null())
 				path_ = json["path"].get<string>();
+			if (!json["base64"].is_null())
+				base64_ = json["base64"].get<string>();
 			return true;
 		}
 		virtual json ToJson() const override
 		{
 			return
 			{
-				{ "type", type_ },
+				{ "type", GetType() },
 				{ "imageId", imageId_ },
 				{ "url", url_ },
-				{ "path", path_ }
+				{ "path", path_ },
+				{ "base64", base64_ }
 			};
 		}
 		virtual ~ImageMessage() {}
@@ -84,12 +93,25 @@ namespace Cyan
 			return tmp;
 		}
 
+		const string& Id() const { return imageId_; }
+		void Id(std::string_view id) { imageId_ = id; }
+
+		const string& Url() const { return url_; }
+		void Url(std::string_view url) { url_ = url; }
+
+		const string& Path() const { return path_; }
+		void Path(std::string_view path) { path_ = path; }
+
+		const string& Base64() const { return base64_; }
+		void Base64(const string& v) { base64_ = v; }
+
 	private:
 		const string type_ = "Image";
 	protected:
 		string imageId_;
 		string url_;
 		string path_;
+		string base64_;
 	};
 
 }

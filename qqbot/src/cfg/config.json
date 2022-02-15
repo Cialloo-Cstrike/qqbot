@@ -1,0 +1,10 @@
+{
+    "hostname": "127.0.0.1",
+    "port": 8084,
+    "botQQ": 100001,
+    "verifyKey": "Hello",
+    "enableVerify": true,
+    "singleMode": false,
+    "reservedSyncId": "-1",
+    "threadPoolSize": 4
+}

@@ -3,9 +3,9 @@
 #define mirai_cpp_defs_messages_ForwardMessage_hpp_H_
 #include <vector>
 #include <optional>
-#include "mirai/defs/message_interface.hpp"
-#include "mirai/defs/qq_types.hpp"
-#include "mirai/defs/message_chain.hpp"
+#include "mirai/defs/IMessage.hpp"
+#include "mirai/defs/QQType.hpp"
+#include "mirai/defs/MessageChain.hpp"
 using std::optional;
 
 namespace Cyan
@@ -17,10 +17,10 @@ namespace Cyan
 		class Node : ISerializable
 		{
 		public:
-			MessageId_t MessageId;
 			int64_t Timestamp;
 			QQ_t SenderId;
 			string SenderName;
+			std::optional<MessageId_t> MessageId;
 			MessageChain_t MessageChain;
 
 			bool operator==(const Node& node) const
@@ -51,7 +51,10 @@ namespace Cyan
 			virtual bool Set(const json& json) override
 			{
 				auto& messageIdJson = json["messageId"];
-				MessageId = messageIdJson.is_null() ? 0 : messageIdJson.get<int64_t>();
+				if (!messageIdJson.is_null())
+				{
+					MessageId = messageIdJson.get<int64_t>();
+				}
 				SenderId = QQ_t(json["senderId"].get<int64_t>());
 				Timestamp = json["time"].get<int64_t>();
 				SenderName = json["senderName"].get<string>();
@@ -61,14 +64,22 @@ namespace Cyan
 
 			virtual json ToJson() const override
 			{
-				return
+				json result =
 				{
 					{ "senderId", SenderId.ToInt64() },
 					{ "time", Timestamp },
 					{ "senderName", SenderName },
-					{ "messageId", MessageId },
 					{ "messageChain", MessageChain.ToJson() }
 				};
+				if (MessageId.has_value())
+				{
+					result["messageId"] = MessageId.value();
+				}
+				else
+				{
+					result["messageId"] = nullptr;
+				}
+				return result;
 			}
 		};
 
