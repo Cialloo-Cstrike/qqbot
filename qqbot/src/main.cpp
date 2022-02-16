@@ -185,7 +185,7 @@ std::string ModifyResponse(std::string response)
 		std::getline(line, temp, ' ');
 	}
 
-	output = output + "Map: " +temp + '\n';
+	output = output + "地图: " +temp + '\n';
 
 	line.str("");
 	line.clear();
@@ -210,7 +210,7 @@ std::string ModifyResponse(std::string response)
 
 		std::getline(line, temp, ' ');
 		std::getline(line, temp, ' ');
-		output = output + "playerCount: " + temp + '\n';
+		output = output + "玩家人数: " + temp + '\n';
 
 		line.str("");
 		line.clear();
@@ -221,7 +221,7 @@ std::string ModifyResponse(std::string response)
 	{
 		std::getline(line, temp, ' ');
 		std::getline(line, temp, ' ');
-		output = output + "playerCount: " + temp + '\n';
+		output = output + "玩家人数: " + temp + '\n';
 
 		line.str("");
 		line.clear();
@@ -229,7 +229,7 @@ std::string ModifyResponse(std::string response)
 	// end of player count.
 
 	/*   Player list   */
-	output = output + "Player list:\n==============\n";
+	output = output + "玩家列表:\n==============\n";
 
 	for(int i = 0; i < 2; i++)  // clear 
 	{
