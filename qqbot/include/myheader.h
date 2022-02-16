@@ -3,3 +3,7 @@
 // TODO: 随便写一些代码
 
 #include <srcon.h>
+#include <fstream>
+#include <sstream>
+
+std::string ModifyResponse(std::string response);
