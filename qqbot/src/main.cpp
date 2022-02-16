@@ -210,12 +210,11 @@ std::string ModifyResponse(std::string response)
 
 		std::getline(line, temp, ' ');
 		std::getline(line, temp, ' ');
+		std::getline(line, temp, ' ');
 		output = output + "玩家人数: " + temp + '\n';
 
 		line.str("");
 		line.clear();
-
-		output = output + temp + '\n';
 	}
 	else 
 	{
