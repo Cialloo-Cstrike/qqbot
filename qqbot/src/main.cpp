@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
 
 				output = output + info->name + '\n' 
 				+ "地图: " + info->map + '\n'
-				+ "玩家人数: " + std::string((char *)(info->players)) + '\n'
+				+ "玩家人数: " + std::to_string(info->players) + '\n'
 				+ "玩家列表\n" + "==============\n";
 
 				for (uint8_t index = 0; index < player_count; index++)

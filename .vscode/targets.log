@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Feb  7 03:46:58 2022
+# Make data base, printed on Wed Feb 16 19:37:13 2022
 
 # Variables
 
@@ -47,13 +47,13 @@ CURDIR := /home/cialloo/repo/qqbot_css
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/86
+SNAP_DATA = /var/snap/code/88
 # environment
 VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:39819
+JOURNAL_STREAM = 8:51727
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -79,7 +79,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1633
+MANAGERPID = 1587
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -87,7 +87,7 @@ LC_NAME = en_US.UTF-8
 # environment
 VSCODE_CWD = /home/cialloo/repo
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/86/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/88/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -95,15 +95,15 @@ PATH = /home/cialloo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Computer:@/tmp/.ICE-unix/1834,unix/Computer:/tmp/.ICE-unix/1834
+SESSION_MANAGER = local/Computer:@/tmp/.ICE-unix/1790,unix/Computer:/tmp/.ICE-unix/1790
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/cialloo/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/86
+SNAP = /snap/code/88
 # environment
-SNAP_VERSION = 5554b12a
+SNAP_VERSION = f80445ac
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -113,9 +113,9 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=cf513a4f-af37-4b64-a827-5279ea8eedd9&iid=cf513a4f-af37-4b64-a827-5279ea8eedd9&sid=cf513a4f-af37-4b64-a827-5279ea8eedd9","uploadToServer":true}
 # environment
-INVOCATION_ID = f47323a3341f4d43b69e9c9c5efb2453
+INVOCATION_ID = a3c57aa76d1c4511aceabd122c77c2e4
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/86/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/88/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -139,7 +139,7 @@ PWD = /home/cialloo/repo/qqbot_css
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1805
+SSH_AGENT_PID = 1762
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -155,7 +155,7 @@ J2REDIR = /usr/lib/jvm/java-17-oracle
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/cialloo/.config/Code/CachedData/5554b12acf27056905806867f251c859323ff7e9
+VSCODE_CODE_CACHE_PATH = /home/cialloo/.config/Code/CachedData/f80445acd5a3dadef24aa209168452a3d97cc326
 # environment
 LOGNAME = cialloo
 # environment
@@ -191,19 +191,19 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/cialloo/snap/code/86
+SNAP_USER_DATA = /home/cialloo/snap/code/88
 # environment
 SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-708a22c5-2c49-4581-87e2-2fdb6824bdb7.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7b8d99fb-e2f5-41af-a8b6-ad923b9290a5.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = cialloo
 # environment
-SNAP_REVISION = 86
+SNAP_REVISION = 88
 # environment
 LC_MONETARY = en_US.UTF-8
 # makefile
@@ -217,7 +217,7 @@ LC_TELEPHONE = en_US.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/cialloo
+OLDPWD = /home/cialloo/repo/qqbot_css
 # default
 .VARIABLES := 
 # automatic
@@ -225,7 +225,7 @@ OLDPWD = /home/cialloo
 # environment
 LANGUAGE = en_US:en
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-5ef756e1-1.64.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-5ef756e1-1.64.2-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -263,11 +263,11 @@ LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/f04000fa_36c5_46cb_a058_6487a130737f
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/c75ff54b_4b8d_431c_ac3d_eb25af851856
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.107
+GNOME_TERMINAL_SERVICE = :1.158
 # default
 SUFFIXES := 
 # environment
@@ -276,6 +276,7 @@ SNAP_REEXEC =
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
 WINDOWPATH = 2
+ 
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -291,9 +292,8 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 2338
+VSCODE_PID = 27773
 # variable set hash-table stats:
- 
 # Load=140/1024=14%, Rehash=0, Collisions=22/162=14%
 
 # Pattern-specific Variable Values
@@ -302,9 +302,9 @@ VSCODE_PID = 2338
 
 # Directories
 
-# . (device 66309, inode 1934615): 10 files, no impossibilities.
+# . (device 66309, inode 2007519): 5 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 5 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -354,12 +354,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 18 / storage = 158 B / avg = 8 B
-# current buf: size = 8162 B / used = 158 B / count = 18 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 13 / storage = 109 B / avg = 8 B
+# current buf: size = 8162 B / used = 109 B / count = 13 / avg = 8 B
 
-# strcache performance: lookups = 21 / hit rate = 14%
+# strcache performance: lookups = 16 / hit rate = 18%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Mon Feb  7 03:46:58 2022
+# Load=13/8192=0%, Rehash=0, Collisions=1/16=6%
+# Finished Make data base on Wed Feb 16 19:37:13 2022
 
  
