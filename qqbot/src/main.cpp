@@ -206,6 +206,15 @@ std::string ModifyResponse(std::string response)
 		line.clear();
 		std::getline(all, temp);
 
+		line << temp;
+
+		std::getline(line, temp, ' ');
+		std::getline(line, temp, ' ');
+		output = output + "playerCount: " + temp + '\n';
+
+		line.str("");
+		line.clear();
+
 		output = output + temp + '\n';
 	}
 	else 
@@ -220,7 +229,7 @@ std::string ModifyResponse(std::string response)
 	// end of player count.
 
 	/*   Player list   */
-	output = output + "Player list:\n";
+	output = output + "Player list:\n==============\n";
 
 	for(int i = 0; i < 2; i++)  // clear 
 	{
