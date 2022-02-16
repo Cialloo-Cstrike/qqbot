@@ -1,7 +1,7 @@
 # CMake 版本要求 (最低 3.1)
 cmake_minimum_required (VERSION 3.1)
 # 项目名称（建议修改）
-project(my-qqrobot)
+project(bot)
 # 设置项目的 C++ 标准
 set(CMAKE_CXX_STANDARD 17)
 
@@ -33,3 +33,5 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     # 静态链接 libgcc 和 libstdc++
     target_link_libraries(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++)
 endif()
+
+target_link_libraries(${PROJECT_NAME} PRIVATE /home/cialloo/repo/qqbot_css/qqbot/src/libssq.a)
