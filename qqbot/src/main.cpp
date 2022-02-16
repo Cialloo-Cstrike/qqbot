@@ -41,7 +41,8 @@ int main(int argc, char* argv[])
 
 	bot.On<GroupMessage>([&](GroupMessage gm)
 	{
-		if(gm.MessageChain.GetPlainTextFirst() == "server")
+		if(gm.MessageChain.GetPlainTextFirst() == "server" 
+		|| gm.MessageChain.GetPlainTextFirst() == "服务器")
 		{
 			char filepath[64];
 			sprintf(filepath, "./cfg/srv_intro/%ld.txt", gm.Sender.Group.GID.ToInt64());
@@ -61,7 +62,8 @@ int main(int argc, char* argv[])
 			{
 				srvlist = srvlist + line + '\n';
 			}
-
+			
+			srvlist = srvlist + "\n==============\n";
 			srvlist = srvlist + "Powered by 达达\nGitHub: https://github.com/luckyweNda";
 			gm.Reply(MessageChain().Plain(srvlist));
 		}
@@ -196,7 +198,7 @@ std::string ModifyResponse(std::string response)
 	}
 
 	line << temp;
-	std::getline(line, temp, ' ');
+	std::getline(line, temp, ':');
 
 	if(temp == "sourcetv")
 	{
@@ -237,7 +239,7 @@ std::string ModifyResponse(std::string response)
 		line.clear();
 	}
 
-	output = output + "============";
+	output = output + "==============";
 
 	return output;
 }
