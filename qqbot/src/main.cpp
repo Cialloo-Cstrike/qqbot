@@ -266,7 +266,7 @@ void *RelayServer(void* args)
         {
             if (FD_ISSET(*it, &tmpfd))
             {
-                char buffer[256];
+                char buffer[512];
                 memset(buffer, 0, sizeof(buffer));
 
                 int recv_len = -1;
@@ -289,11 +289,37 @@ void *RelayServer(void* args)
                 else
                 {
                     buffer[recv_len] = '\0';
-                    printf("server recv:%s\n", buffer);
+                    printf("server recv:\n%s\n", buffer);
 
+					std::stringstream recvMsg(buffer);
+					std::string line, output;
+					std::getline(recvMsg, line);
+					int type = std::stoi(line);
+
+					switch(type)
+					{
+						case QQMSG:
+						{
+							std::getline(recvMsg, line);
+							int group = std::stoi(line);
+
+							std::getline(recvMsg, line);
+							output = output + line + '\n';
+
+							std::getline(recvMsg, line);
+							output = output + line + ": ";
+
+							std::getline(recvMsg, line);
+							output = output + line;
+
+							bot.SendMessage(GID_t(group), MessageChain().Plain(output));
+						}
+					}
+					/*
 					std::string msg;
 					msg = msg + "This is a socket test.\nReceive a message from server.\nMessage: " + buffer;
-					bot.SendMessage(920455564_qq, MessageChain().Plain(msg));
+					bot.SendMessage(920455564_gid, MessageChain().Plain(msg));
+					*/
                 }
             }
         }
