@@ -291,9 +291,8 @@ void *RelayServer(void* args)
                     buffer[recv_len] = '\0';
                     printf("server recv:%s\n", buffer);
 
-					char msg[512];
-					sprintf("This is a socket test.\nReceive a message from server: %s:%d\nMessage: %s",
-					inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port), buffer);
+					std::string msg;
+					msg = msg + "This is a socket test.\nReceive a message from server.\nMessage: " + buffer;
 					bot.SendMessage(920455564_qq, MessageChain().Plain(msg));
                 }
             }
