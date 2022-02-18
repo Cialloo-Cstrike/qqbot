@@ -9,8 +9,6 @@ public void OnPluginStart()
 {
     RegConsoleCmd("sm_qq", Cmd_QQ, "Send a server message to qq group.");
 
-    g_hSocket = SocketCreate(SOCKET_TCP, OnSocketError);
-
     CreateConVar("cialloo_socket_hostname", "127.0.0.1");
     CreateConVar("cialloo_socket_port", "51000");
     CreateConVar("cialloo_socket_qqgroup", "123456789", "qq group number.");
@@ -36,8 +34,9 @@ public void OnConfigsExecuted()
 
         char hostname[36];
         int port = GetConVarInt(cv_port);
-
         GetConVarString(cv_hostname, hostname, sizeof(hostname));
+        
+        g_hSocket = SocketCreate(SOCKET_TCP, OnSocketError);
         SocketConnect(g_hSocket, OnSocketConnected, OnSocketReceived, OnSocketDisconnected, hostname, port);
     }
 }
