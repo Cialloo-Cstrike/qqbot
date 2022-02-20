@@ -70,12 +70,12 @@ int main(int argc, char* argv[])
 
 		try
 		{
-			int lineNum = std::stoi(gm.MessageChain.GetPlainTextFirst());
-
-			if(lineNum > 15)
+			if(gm.MessageChain.GetPlainTextFirst().length() > 1)
 			{
 				return;
 			}
+
+			int lineNum = std::stoi(gm.MessageChain.GetPlainTextFirst());
 
 			char filepath[64];
 			sprintf(filepath, "./cfg/srv_ip/%ld.txt", gm.Sender.Group.GID.ToInt64());
@@ -305,18 +305,12 @@ void *RelayServer(void* args)
 						case NULLMSG:
 						{
 							send(*it, "0", 8, 0);
+							break;
 						}
 						case SURFWR:
-						{
-							while(std::getline(message, line))
-							{
-								output = output + line + '\n';
-							}
-
-							output = output + "Congratulations!";
-							SendRecordToGroup(output);
-						}
 						case SURFFINISH:
+						case BHOPWR:
+						case BHOPFINISH:
 						{
 							while(std::getline(message, line))
 							{

@@ -20,7 +20,20 @@ enum MessageType
     line3: server name
     ...
     */
-    SURFFINISH = 3
+    SURFFINISH = 3,
+    /*
+    line1: 4
+    line2: NEW BHOP RECORD
+    line3: server name
+    ...
+    */
+    BHOPWR = 4,
+    /*
+    line1: 5
+    line2: finish map
+    line3: server name
+    */
+    BHOPFINISH = 5
 };
 
 #endif
