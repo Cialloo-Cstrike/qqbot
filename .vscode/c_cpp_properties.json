@@ -3,15 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/home/cialloo/repo/sourceSDK/mp/src/public/",
-                "/home/cialloo/repo/sourceSDK/mp/src/public/engine/",
-                "/home/cialloo/repo/sourceSDK/mp/src/public/tier0/",
-                "/home/cialloo/repo/sourceSDK/mp/src/public/tier1/",
-                "/home/cialloo/repo/sourceSDK/mp/src/common/"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "linux-clang-x64"

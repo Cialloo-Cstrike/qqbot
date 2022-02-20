@@ -11,6 +11,7 @@
 using namespace std;
 using namespace Cyan;
 
+void SendRecordToGroup(std::string &message);
 void *RelayServer(void* args);
 
 MiraiBot bot;
@@ -59,6 +60,8 @@ int main(int argc, char* argv[])
 			{
 				srvlist = srvlist + line + '\n';
 			}
+
+			file.close();
 			
 			srvlist = srvlist + "\n==============\n";
 			srvlist = srvlist + "Powered by 达达\nGitHub: https://github.com/luckyweNda";
@@ -93,6 +96,8 @@ int main(int argc, char* argv[])
 			{
 				num++;
 			}
+
+			file.close();
 
 			if(num == lineNum)
 			{
@@ -266,7 +271,7 @@ void *RelayServer(void* args)
         {
             if (FD_ISSET(*it, &tmpfd))
             {
-                char buffer[512];
+                char buffer[1024];
                 memset(buffer, 0, sizeof(buffer));
 
                 int recv_len = -1;
@@ -291,39 +296,63 @@ void *RelayServer(void* args)
                     buffer[recv_len] = '\0';
                     printf("server recv:\n%s\n", buffer);
 
-					std::stringstream recvMsg(buffer);
+					std::stringstream message(buffer);
 					std::string line, output;
-					std::getline(recvMsg, line);
-					int type = std::stoi(line);
+					std::getline(message, line);
 
-					switch(type)
+					switch(std::stoi(line))
 					{
-						case QQMSG:
+						case NULLMSG:
 						{
-							std::getline(recvMsg, line);
-							int group = std::stoi(line);
+							send(*it, "0", 8, 0);
+						}
+						case SURFWR:
+						{
+							while(std::getline(message, line))
+							{
+								output = output + line + '\n';
+							}
 
-							std::getline(recvMsg, line);
-							output = output + line + '\n';
+							output = output + "Congratulations!";
+							SendRecordToGroup(output);
+						}
+						case SURFFINISH:
+						{
+							while(std::getline(message, line))
+							{
+								output = output + line + '\n';
+							}
 
-							std::getline(recvMsg, line);
-							output = output + line + ": ";
-
-							std::getline(recvMsg, line);
-							output = output + line;
-
-							bot.SendMessage(GID_t(group), MessageChain().Plain(output));
+							output = output + "Congratulations!";
+							SendRecordToGroup(output);
 						}
 					}
-					/*
-					std::string msg;
-					msg = msg + "This is a socket test.\nReceive a message from server.\nMessage: " + buffer;
-					bot.SendMessage(920455564_gid, MessageChain().Plain(msg));
-					*/
                 }
             }
         }
     }
 
 	pthread_exit(NULL);
+}
+
+void SendRecordToGroup(std::string &message)
+{
+	std::ifstream file;
+	file.open("./cfg/recordgroup.txt");
+
+    if(!file.is_open())
+    {
+        std::cout << "The file cannot be opened." << std::endl;
+        return;
+    }
+
+	std::string line;
+
+	while(std::getline(file, line))
+	{
+		bot.SendMessage(GID_t(std::stol(line)), MessageChain().Plain(message));
+		sleep(1);
+	}
+
+	file.close();
 }
