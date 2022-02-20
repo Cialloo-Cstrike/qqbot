@@ -57,8 +57,9 @@ public void Influx_OnTimerFinishPost( int client, int runid, int mode, int style
     GetConVarString(cv_ip, ip, sizeof(ip));
     GetCurrentMap(mapname, sizeof(mapname));
     Influx_GetRunName(runid, runname, sizeof(runname));
+    Influx_GetStyleName(style, stylename, sizeof(stylename));
 
-    if(GetConVarBool(cv_wr))
+    if(GetConVarBool(cv_wr) && time < prev_best)
     {
         char message[1024];
 

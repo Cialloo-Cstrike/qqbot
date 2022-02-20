@@ -258,6 +258,34 @@ void *RelayServer(void* args)
             printf("we got a new connection, client_count=%d, ip=%s, port=%d\n", 
             m_connfd, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
+			// Check if it is in the white list.
+			bool permission = false;
+			std::ifstream file;
+			std::string line;
+
+			file.open("./cfg/whiteList.txt");
+
+			if(!file.is_open())
+			{
+				std::cout << "Cannot open whiteList.txt" << std::endl;
+				continue;
+			}
+
+			while(std::getline(file, line))
+			{
+				if(strcmp(line.c_str(), inet_ntoa(client_addr.sin_addr)) == 0)
+				{
+					permission = true;
+				}
+			}
+
+			if(!permission)
+			{
+				close(m_connfd);
+				std::cout << "Get a invalid ip address: " << inet_ntoa(client_addr.sin_addr) << std::endl;
+				continue;
+			}
+
             array_fd.push_back(m_connfd);
 
             if(m_connfd > max_fd)
