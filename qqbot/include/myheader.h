@@ -14,3 +14,7 @@
 #include <string.h>
 #include <vector>
 #include <msgtype.h>
+
+void SendRecordToGroup(std::string &message);
+void *RelayServer(void* args);
+void MainBot();

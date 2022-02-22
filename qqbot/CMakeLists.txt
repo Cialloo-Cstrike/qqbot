@@ -19,7 +19,7 @@ endif(MSVC)
 
 # 要添加.cpp源文件，请修改这一行
 # 例如：add_executable(${PROJECT_NAME} src/main.cpp src/a.cpp src/b.cpp)
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/socket.cpp src/bot.cpp)
 # 设置头文件目录
 include_directories(include)
 # 链接 mirai-cpp
