@@ -18,3 +18,4 @@
 void SendRecordToGroup(std::string &message);
 void *RelayServer(void* args);
 void MainBot();
+void OnSocketReceiveMsg(int sockfd, const char* buffer);

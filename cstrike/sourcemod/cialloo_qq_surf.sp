@@ -59,20 +59,20 @@ public void Influx_OnTimerFinishPost( int client, int runid, int mode, int style
     Influx_GetRunName(runid, runname, sizeof(runname));
     Influx_GetStyleName(style, stylename, sizeof(stylename));
 
-    if(GetConVarBool(cv_wr) && time < prev_best)
+    if(GetConVarBool(cv_wr) && (time < prev_best || prev_best < 3.0))
     {
         char message[1024];
 
         FormatEx(message, sizeof(message),
         "%d\n\
         # New Surf Record! #\n\
-        server: %s\n\
-        ip: %s\n\
-        player: %N\n\
-        map: %s\n\
-        time: %.3f\n\
-        style: %s\n\
-        run name: %s", 
+        %s\n\
+        %s\n\
+        玩家: %N\n\
+        地图: %s\n\
+        时间: %.3f\n\
+        模式: %s\n\
+        线路: %s", 
         SURFWR, 
         hostname, 
         ip, 
@@ -92,14 +92,14 @@ public void Influx_OnTimerFinishPost( int client, int runid, int mode, int style
         FormatEx(message, sizeof(message),
         "%d\n\
         # Finished map. #\n\
-        server: %s\n\
-        ip: %s\n\
-        player: %N\n\
-        map: %s\n\
-        time: %.3f\n\
-        style: %s\n\
-        run name: %s", 
-        SURFWR, 
+        %s\n\
+        %s\n\
+        玩家: %N\n\
+        地图: %s\n\
+        时间: %.3f\n\
+        模式: %s\n\
+        线路: %s", 
+        SURFFINISH, 
         hostname, 
         ip, 
         client, 

@@ -64,15 +64,15 @@ public void Shavit_OnWorldRecord(int client, int style, float time, int jumps, i
         FormatEx(message, sizeof(message),
         "%d\n\
         # New Bhop Record! #\n\
-        server: %s\n\
-        ip: %s\n\
-        player: %N\n\
-        map: %s\n\
-        time: %.3f\n\
-        style: %s\n\
-        jumps: %d\n\
-        strafes: %d\n\
-        sync: %f\%", 
+        %s\n\
+        %s\n\
+        玩家: %N\n\
+        地图: %s\n\
+        时间: %.3f\n\
+        模式: %s\n\
+        跳跃: %d\n\
+        加速: %d\n\
+        同步率: %f\%", 
         BHOPWR, 
         hostname, 
         ip, 
@@ -112,15 +112,15 @@ public void Shavit_OnFinish(int client, int style, float time, int jumps, int st
         FormatEx(message, sizeof(message),
         "%d\n\
         # Bhop Finish. #\n\
-        server: %s\n\
-        ip: %s\n\
-        player: %N\n\
-        map: %s\n\
-        time: %.3f\n\
-        style: %s\n\
-        jumps: %d\n\
-        strafes: %d\n\
-        sync: %f\%", 
+        %s\n\
+        %s\n\
+        玩家: %N\n\
+        地图: %s\n\
+        时间: %.3f\n\
+        模式: %s\n\
+        跳跃: %d\n\
+        加速: %d\n\
+        同步率: %f\%", 
         BHOPFINISH, 
         hostname, 
         ip, 
