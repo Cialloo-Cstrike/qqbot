@@ -19,7 +19,7 @@ endif(MSVC)
 
 # 要添加.cpp源文件，请修改这一行
 # 例如：add_executable(${PROJECT_NAME} src/main.cpp src/a.cpp src/b.cpp)
-add_executable(${PROJECT_NAME} src/main.cpp src/socket.cpp src/bot.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/socket.cpp src/bot.cpp src/socket_msgtype.cpp)
 # 设置头文件目录
 include_directories(include)
 # 链接 mirai-cpp
@@ -34,4 +34,4 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_link_libraries(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++)
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE /home/cialloo/Documents/repo/qqbot_css/qqbot/src/libssq.a)
+target_link_libraries(${PROJECT_NAME} PRIVATE /home/cialloo/repo/qqbot_css/qqbot/src/libssq.a)
