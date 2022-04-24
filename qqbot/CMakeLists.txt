@@ -34,4 +34,4 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_link_libraries(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++)
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE /home/cialloo/repo/qqbot_css/qqbot/src/libssq.a)
+target_link_libraries(${PROJECT_NAME} PRIVATE /home/cialloo/repo/qqbot_cstrike/qqbot/src/libssq.a)

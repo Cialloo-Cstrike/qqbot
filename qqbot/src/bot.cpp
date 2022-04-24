@@ -87,7 +87,28 @@ void MainBot()
 
 				uint8_t player_count = 0;
 				a2s_info *info = ssq_info(querier);
+
+				if (!ssq_ok(querier)) 
+				{
+					const char *error_message = ssq_errm(querier);
+					fprintf(stderr, "ssq_info: %s\n", error_message);
+
+					ssq_errclr(querier);
+
+					return;
+				}
+
 				a2s_player *players = ssq_player(querier, &player_count);
+
+				if (!ssq_ok(querier)) 
+				{
+					const char *error_message = ssq_errm(querier);
+					fprintf(stderr, "ssq_info: %s\n", error_message);
+
+					ssq_errclr(querier);
+
+					return;
+				}
 
 				output = output + info->name + '\n' 
 				+ "地图: " + info->map + '\n'
