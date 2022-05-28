@@ -17,6 +17,8 @@ public:
     qqbot(std::string config_path);
     ~qqbot();
 
+    void send_to_group(unsigned long long group_number, std::string message);
+
 private:
     void verify();
     void bind();

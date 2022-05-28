@@ -31,6 +31,23 @@ qqbot::~qqbot()
     receive_parser(response);
 }
 
+void qqbot::send_to_group(unsigned long long group_number, std::string message)
+{
+    nlohmann::json message_json = 
+    {
+        { "sessionKey", session_key_ },
+        { "target", group_number }
+    };
+
+    message_json["messageChain"] = 
+    {
+        { { "type", "Plain" }, { "text", message } }
+    }; std::cout << message_json.dump() << std::endl;//DEBUG
+
+    auto response = http_client_->Post("/sendGroupMessage", message_json.dump(), content_type.c_str());
+    receive_parser(response);
+}
+
 void qqbot::bind()
 {
     nlohmann::json bind_json = 
