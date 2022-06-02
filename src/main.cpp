@@ -3,6 +3,8 @@
 #include <fstream>
 #include <ssq/a2s.h>
 #include <cialloo/mirai/qqbot.hpp>
+#include <sstream>
+#include <srcon.h>
 
 std::string get_host_info(std::string ip, int port)
 {
@@ -75,23 +77,56 @@ int main(int argc, char* args[])
             {
                 if(message_json["data"]["messageChain"].size() >= 2) // check if this has a plain text
                 {
-                    std::cout << "Has plain text\n";
                     nlohmann::json text = message_json["data"]["messageChain"].at(1);
 
                     if(text["type"].get<std::string>() == "Plain") // check what type it is
                     {
-                        std::string keyword = text["text"].get<std::string>();
+                        std::string str = text["text"].get<std::string>();
 
-                        if(group_settings[group_str].contains(keyword)) // check if group has this keyword
+                        if(group_settings[group_str].contains(str)) // check if group has this keyword
                         {
-                            std::string ip = group_settings[group_str][keyword]["ip"].get<std::string>();
-                            int port = group_settings[group_str][keyword]["port"].get<int>();
+                            std::string ip = group_settings[group_str][str]["ip"].get<std::string>();
+                            int port = group_settings[group_str][str]["port"].get<int>();
                             std::string output = get_host_info(ip, port);
 
                             if(output.size() > 0)
                                 bot.send_to_group(group_number, output);
                             else
                                 bot.send_to_group(group_number, "Error query.");
+                        }
+                        else if(str[0] == '>')
+                        {
+                            std::istringstream iss(str);
+                            std::string temp{};
+                            std::string keyword{};
+                            std::string cmd{};
+
+                            std::getline(iss, temp, ' ');
+                            std::getline(iss, keyword, ' ');
+
+                            if(!group_settings[group_str].contains(keyword))
+                                return;
+
+                            if(!group_settings[group_str][keyword].contains("rcon"))
+                                return;
+
+                            auto sender = message_json["data"]["sender"]["id"].get<unsigned long long>();
+                            auto admins = group_settings[group_str]["admin"].get<std::vector<unsigned long long>>();
+
+                            if(std::find(admins.begin(), admins.end(), sender) == admins.end())
+                                return;
+
+                            while(std::getline(iss, temp, ' '))
+                                cmd += temp;
+
+
+                            std::string ip = group_settings[group_str][str]["ip"].get<std::string>();
+                            std::string pass = group_settings[group_str][str]["rcon"].get<std::string>();
+                            int port = group_settings[group_str][str]["port"].get<int>();
+
+                            srcon client = srcon(ip, port, pass);
+                            std::string response = client.send(cmd);
+                            bot.send_to_group(group_number, response);
                         }
                     }
                 }
