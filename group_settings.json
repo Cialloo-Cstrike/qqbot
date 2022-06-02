@@ -1,0 +1,14 @@
+{
+    "123456" : {
+        "keyword1" : {
+            "ip" : "127.0.0.1",
+            "port" : 27015,
+            "rcon" : "password"
+        },
+        "keyword2" : {
+            "ip" : "192.168.0.1",
+            "port" : 27016,
+            "rcon" : "password2"
+        }
+    }
+}
