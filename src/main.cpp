@@ -42,15 +42,20 @@ std::string get_host_info(std::string ip, int port)
 
     output = output + info->name + '\n' 
     + "地图: " + info->map + '\n'
-    + "玩家人数: " + std::to_string(info->players) + '\n'
-    + "玩家列表\n" + "==============\n";
+    + "玩家人数: " + std::to_string(info->players) + '\n';
 
-    for (uint8_t index = 0; index < player_count; index++)
+    if(info->players)
     {
-        output = output + players[index].name + '\n';
-    }
+        output += "玩家列表\n"; 
+        output += "==============\n";
 
-    output = output + "==============";
+        for (uint8_t index = 0; index < player_count; index++)
+        {
+            output = output + players[index].name + '\n';
+        }
+
+        output = output + "==============";
+    }
 
     ssq_info_free(info);
     ssq_player_free(players, player_count);
@@ -114,7 +119,10 @@ int main(int argc, char* args[])
                             auto admins = group_settings[group_str]["admin"].get<std::vector<unsigned long long>>();
 
                             if(std::find(admins.begin(), admins.end(), sender) == admins.end())
+                            {
+                                std::cout << "You don\'t have the permission.";
                                 return;
+                            }
 
                             while(std::getline(iss, temp, ' '))
                                 cmd += temp + ' ';
@@ -128,6 +136,8 @@ int main(int argc, char* args[])
 
                             if(response.size() > 0)
                                 bot.send_to_group(group_number, response);
+                            else
+                                bot.send_to_group(group_number, "Command has been executed successfully.");
                         }
                     }
                 }
