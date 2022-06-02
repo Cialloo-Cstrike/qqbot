@@ -117,16 +117,17 @@ int main(int argc, char* args[])
                                 return;
 
                             while(std::getline(iss, temp, ' '))
-                                cmd += temp;
+                                cmd += temp + ' ';
 
-
-                            std::string ip = group_settings[group_str][str]["ip"].get<std::string>();
-                            std::string pass = group_settings[group_str][str]["rcon"].get<std::string>();
-                            int port = group_settings[group_str][str]["port"].get<int>();
+                            std::string ip = group_settings[group_str][keyword]["ip"].get<std::string>();
+                            std::string pass = group_settings[group_str][keyword]["rcon"].get<std::string>();
+                            int port = group_settings[group_str][keyword]["port"].get<int>();
 
                             srcon client = srcon(ip, port, pass);
                             std::string response = client.send(cmd);
-                            bot.send_to_group(group_number, response);
+
+                            if(response.size() > 0)
+                                bot.send_to_group(group_number, response);
                         }
                     }
                 }
