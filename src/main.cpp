@@ -58,11 +58,13 @@ std::string get_host_info(std::string ip, int port)
 
 int main(int argc, char* args[])
 {
-    cialloo::mirai::qqbot bot("config/config.json");
+    cialloo::mirai::qqbot bot("./config/config.json");
     std::ifstream group_json("./config/group_settings.json");
     nlohmann::json group_settings = nlohmann::json::parse(group_json);
     bot.received_text([&](std::string message) {
         auto message_json = nlohmann::json::parse(message);
+        if(!message_json["data"].contains("type"))
+            return;
 
         if(message_json["data"]["type"].get<std::string>() == "GroupMessage")   // check if group msg
         {
@@ -71,9 +73,10 @@ int main(int argc, char* args[])
 
             if(group_settings.contains(group_str)) // check have group config.
             {
-                if(group_settings["data"]["messageChain"].size() >= 2) // check if this has a plain text
+                if(message_json["data"]["messageChain"].size() >= 2) // check if this has a plain text
                 {
-                    nlohmann::json text = group_settings["data"]["messageChain"].at(1);
+                    std::cout << "Has plain text\n";
+                    nlohmann::json text = message_json["data"]["messageChain"].at(1);
 
                     if(text["type"].get<std::string>() == "Plain") // check what type it is
                     {
@@ -95,4 +98,6 @@ int main(int argc, char* args[])
             }
         }
     });
+
+    bot.run();
 }
