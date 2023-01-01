@@ -2,6 +2,7 @@ const { createClient } = require('oicq')
 const Gamedig = require('gamedig');
 const { exec } = require('node:child_process')
 const fs = require('fs');
+var Rcon = require('rcon');
 
 let config_file = fs.readFileSync('config.json');
 let config = JSON.parse(config_file);
@@ -51,7 +52,7 @@ client.on("message.group", message => {
         })
     }
     else if(message_array[0] == "!" 
-    && message_array[1] in config[message.group_id]) { // 简易输出
+    && message_array[1] in config[message.group_id]) { // 成员输出
         console.log("npx gamedig --type css " 
         + config[message.group_id][message_array[1]].host 
         + ":" + config[message.group_id][message_array[1]].port)
@@ -77,12 +78,31 @@ client.on("message.group", message => {
                 }
                 message.reply("服务器: " + a2s_result.name + "\n" 
                 + "地图: " + a2s_result.map + "\n" 
-                + "IP: " + a2s_result.connect + "\n" 
+                + "IP: " + a2s_result.rcon_clientect + "\n" 
                 + "人数: " + a2s_result.raw.numplayers + "\n" 
                 + "==========\n" 
                 + members 
                 + "==========", true)
             }
         })
+    }
+    else if(message_array[0] == ">" 
+    && message_array[1] in config[message.group_id]) { // 远程控制
+        let rcon_client = Rcon(config[message.group_id][message_array[1]].host,
+            config[message.group_id][message_array[1]].port,
+            config[message.group_id][message_array[1]].rcon)
+        rcon_client.connect()
+        rcon_client.on('auth', function() {
+            rcon_client.send(message_array[2]);
+        }).on('response', function(str) {
+            console.log("Response: " + str);
+            message.reply(String(str), true)
+        }).on('error', function(err) {
+            console.log("Error: " + err);
+            message.reply(String(err), true)
+        }).on('end', function() {
+            console.log("rcon connetction closed.");
+            process.exit();
+        });
     }
 })
