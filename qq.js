@@ -88,6 +88,10 @@ client.on("message.group", message => {
     }
     else if(message_array[0] == ">" 
     && message_array[1] in config[message.group_id]) { // 远程控制
+        if(!config[message.group_id][message_array[1]].admin.includes(message.sender.user_id)) {
+            message.reply("You are not admin.", true)
+            return
+        }
         let rcon_client = Rcon(config[message.group_id][message_array[1]].host,
             config[message.group_id][message_array[1]].port,
             config[message.group_id][message_array[1]].rcon)
