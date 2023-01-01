@@ -95,11 +95,14 @@ client.on("message.group", message => {
         rcon_client.on('auth', function() {
             rcon_client.send(message_array[2]);
         }).on('response', function(str) {
+            str += " "
+            if(str.length < 5) return
             console.log("Response: " + str);
-            message.reply(String(str), true)
+            message.reply(str, true)
         }).on('error', function(err) {
+            err += " "
             console.log("Error: " + err);
-            message.reply(String(err), true)
+            message.reply(err, true)
         }).on('end', function() {
             console.log("rcon connetction closed.");
             process.exit();
