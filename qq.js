@@ -93,7 +93,13 @@ client.on("message.group", message => {
             config[message.group_id][message_array[1]].rcon)
         rcon_client.connect()
         rcon_client.on('auth', function() {
-            rcon_client.send(message_array[2]);
+            let cmd = " "
+            for(let i = 0; i < message_array.length; i++) {
+                if(i + 3 > message_array.length) break
+                else cmd += (message_array[i + 2] + " ")
+            }
+            console.log(cmd)
+            rcon_client.send(cmd);
         }).on('response', function(str) {
             str += " "
             if(str.length < 5) return
