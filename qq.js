@@ -21,12 +21,19 @@ client.on("message.group", message => {
 
     let message_array = message.toString().split(" ")
     if(message_array[0] != ">" 
-    || message_array[0] != "#"
-    || message_array[0] != "!")
+    && message_array[0] != "#"
+    && message_array[0] != "!")
         return;
 
-    if(message_array[0] == "#" && message_array[1] in config[message.group_id]) { // 简易输出
-        exec("npx gamedig --type css " + config[message.group_id].host + ":" + config[message.group_id].port, (err, result) => {
+    if(message_array[0] == "#" 
+    && message_array[1] in config[message.group_id]) { // 简易输出
+        console.log("npx gamedig --type css " 
+        + config[message.group_id][message_array[1]].host 
+        + ":" + config[message.group_id][message_array[1]].port)
+        exec("npx gamedig --type css " 
+        + config[message.group_id][message_array[1]].host 
+        + ":" + config[message.group_id][message_array[1]].port, 
+        (err, result) => {
             if (err) {
                 console.error("could not execute command: ", err)
                 message.reply("Error.", true)
@@ -43,8 +50,15 @@ client.on("message.group", message => {
             }
         })
     }
-    else if(message_array[0] == "!" && message_array[1] in config[message.group_id]) { // 简易输出
-        exec("npx gamedig --type css " + config[message.group_id].host + ":" + config[message.group_id].port, (err, result) => {
+    else if(message_array[0] == "!" 
+    && message_array[1] in config[message.group_id]) { // 简易输出
+        console.log("npx gamedig --type css " 
+        + config[message.group_id][message_array[1]].host 
+        + ":" + config[message.group_id][message_array[1]].port)
+        exec("npx gamedig --type css " 
+        + config[message.group_id][message_array[1]].host 
+        + ":" + config[message.group_id][message_array[1]].port, 
+        (err, result) => {
             if (err) {
                 console.error("could not execute command: ", err)
                 message.reply("Error.", true)
@@ -59,14 +73,15 @@ client.on("message.group", message => {
             else {
                 let members = ""
                 for(i in a2s_result.players) {
-                    members += i.name + "\n"
+                    members += a2s_result.players[i].name+ "\n"
                 }
                 message.reply("服务器: " + a2s_result.name + "\n" 
                 + "地图: " + a2s_result.map + "\n" 
                 + "IP: " + a2s_result.connect + "\n" 
                 + "人数: " + a2s_result.raw.numplayers + "\n" 
                 + "==========\n" 
-                + members + "==========", true)
+                + members 
+                + "==========", true)
             }
         })
     }
