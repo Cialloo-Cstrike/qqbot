@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "gamedig": "^4.0.5",
+    "oicq": "^2.3.1"
+  }
+}
