@@ -78,7 +78,7 @@ client.on("message.group", message => {
                 }
                 message.reply("服务器: " + a2s_result.name + "\n" 
                 + "地图: " + a2s_result.map + "\n" 
-                + "IP: " + a2s_result.rcon_clientect + "\n" 
+                + "IP: " + a2s_result.connect + "\n" 
                 + "人数: " + a2s_result.raw.numplayers + "\n" 
                 + "==========\n" 
                 + members 
