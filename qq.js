@@ -9,7 +9,7 @@ const config_file = fs.readFileSync('config.json');
 const config = JSON.parse(config_file);
 const client = createClient(config.account)
 const configuration = new Configuration({
-    apiKey: config.chatgpt
+    apiKey: config.chatgpt.apikey
 });
 const openai = new OpenAIApi(configuration);
 
@@ -23,7 +23,7 @@ client.on("system.online", () => console.log("Logged in!"))
 
 client.on("message.group", message => {
     if(message.group_id in config == false 
-    && message.group_id in config.chatgpt.permit == false)
+    && config.chatgpt.permit.includes(message.group_id) == false)
         return;
 
     let message_array = message.toString().split(" ")
@@ -126,15 +126,13 @@ client.on("message.group", message => {
         });
     }
     else if(message_array[0] == "/") {
-        runCompletion(message_array[1], message);
+        async function runCompletion () {
+        const completion = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: message_array[1],
+        });
+        message.reply(completion.data.choices[0].text, true)
+        }
+        runCompletion();
     }
 })
-
-
-async function runCompletion (send, message) {
-const completion = await openai.createCompletion({
-  model: "text-davinci-003",
-  prompt: send,
-});
-message.reply(completion.data.choices[0].text, true)
-}
