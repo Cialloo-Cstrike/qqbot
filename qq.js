@@ -126,13 +126,15 @@ client.on("message.group", message => {
         });
     }
     else if(message_array[0] == "/") {
-        async function runCompletion () {
-            let completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: message_array[1],
-            });
-            message.reply(completion.data.choices[0].text, true);
-        }
-        runCompletion();
+        runCompletion(message_array[1], message);
     }
 })
+
+
+async function runCompletion (send, message) {
+const completion = await openai.createCompletion({
+  model: "text-davinci-003",
+  prompt: send,
+});
+message.reply(completion.data.choices[0].text, true)
+}
