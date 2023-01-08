@@ -13,5 +13,9 @@
             "rcon" : "password",
             "admin" : [123, 456, 789]
         }
+    },
+    "chatgpt" : {
+        "apikey" : "apikey",
+        "permit" : [123, 456, 789]
     }
 }

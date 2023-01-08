@@ -2,11 +2,16 @@ const { createClient } = require('oicq')
 const Gamedig = require('gamedig');
 const { exec } = require('node:child_process')
 const fs = require('fs');
-var Rcon = require('rcon');
+const Rcon = require('rcon');
+const { Configuration, OpenAIApi } = require("openai");
 
-let config_file = fs.readFileSync('config.json');
-let config = JSON.parse(config_file);
+const config_file = fs.readFileSync('config.json');
+const config = JSON.parse(config_file);
 const client = createClient(config.account)
+const configuration = new Configuration({
+    apiKey: config.chatgpt
+});
+const openai = new OpenAIApi(configuration);
 
 client.on("system.login.qrcode", function (e) {
     //扫码后按回车登录
@@ -17,13 +22,15 @@ client.on("system.login.qrcode", function (e) {
 client.on("system.online", () => console.log("Logged in!"))
 
 client.on("message.group", message => {
-    if(message.group_id in config == false)
+    if(message.group_id in config == false 
+    && message.group_id in config.chatgpt.permit == false)
         return;
 
     let message_array = message.toString().split(" ")
     if(message_array[0] != ">" 
     && message_array[0] != "#"
-    && message_array[0] != "!")
+    && message_array[0] != "!"
+    && message_array[0] != "/")
         return;
 
     if(message_array[0] == "#" 
@@ -117,5 +124,15 @@ client.on("message.group", message => {
             console.log("rcon connetction closed.");
             process.exit();
         });
+    }
+    else if(message_array[0] == "/") {
+        async function runCompletion () {
+            let completion = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: message_array[1],
+            });
+            message.reply(completion.data.choices[0].text, true);
+        }
+        runCompletion();
     }
 })
