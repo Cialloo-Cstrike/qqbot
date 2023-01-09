@@ -2,7 +2,7 @@
   "dependencies": {
     "gamedig": "^4.0.5",
     "oicq": "^2.3.1",
-    "openai": "^3.1.0",
-    "rcon": "^1.1.0"
+    "rcon": "^1.1.0",
+    "request": "^2.88.2"
   }
 }

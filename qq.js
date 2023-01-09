@@ -3,15 +3,13 @@ const Gamedig = require('gamedig');
 const { exec } = require('node:child_process')
 const fs = require('fs');
 const Rcon = require('rcon');
-const { Configuration, OpenAIApi } = require("openai");
+const request = require('request');
 
 const config_file = fs.readFileSync('config.json');
 const config = JSON.parse(config_file);
 const client = createClient(config.account)
-const configuration = new Configuration({
-    apiKey: config.chatgpt.apikey
-});
-const openai = new OpenAIApi(configuration);
+const api_key = config.chatgpt.apikey;
+const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
 client.on("system.login.qrcode", function (e) {
     //扫码后按回车登录
@@ -126,13 +124,19 @@ client.on("message.group", message => {
         });
     }
     else if(message_array[0] == "/") {
-        async function runCompletion () {
-        const completion = await openai.createCompletion({
-          model: "text-davinci-003",
-          prompt: message_array[1],
+        let temp = message.toString()
+        let prompt = ""
+        for(let i = 2; i < temp.length; i++)
+            prompt += temp[i]
+        let payload = {
+            'prompt': prompt,
+            'max_tokens': 30,
+            'temperature': 0.9,
+            'top_p': 0.9,
+        };
+        console.log(payload)
+        request.post({url: endpoint, body: payload, json: true, headers: {Authorization: `Bearer ${api_key}`}}, (err, res, body) => {
+            console.log(body);
         });
-        message.reply(completion.data.choices[0].text, true)
-        }
-        runCompletion();
     }
 })
