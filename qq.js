@@ -130,13 +130,16 @@ client.on("message.group", message => {
             prompt += temp[i]
         let payload = {
             'prompt': prompt,
-            'max_tokens': 30,
+            'max_tokens': 1024,
             'temperature': 0.9,
             'top_p': 0.9,
         };
         console.log(payload)
         request.post({url: endpoint, body: payload, json: true, headers: {Authorization: `Bearer ${api_key}`}}, (err, res, body) => {
-            console.log(body);
+            let temp = ""
+            for(let i = 2; i < body.choices[0].text.length; i++)
+                temp += body.choices[0].text[i]
+            message.reply(temp, true)
         });
     }
 })
