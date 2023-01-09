@@ -114,6 +114,7 @@ client.on("message.group", message => {
             if(str.length < 5) return
             console.log("Response: " + str);
             message.reply(str, true)
+            rcon_client.disconnect()
         }).on('error', function(err) {
             err += " "
             console.log("Error: " + err);
