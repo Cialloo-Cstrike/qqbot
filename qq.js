@@ -5,19 +5,38 @@ const fs = require('fs');
 const Rcon = require('rcon');
 const request = require('request');
 
+app_config = {
+    log_level: "info",
+    platform: 5,
+    auto_server: true,
+    ignore_self: true,
+    resend: true,
+    cache_group_member: true,
+    reconn_interval: 5,
+    data_dir: path.join(process.cwd(), "data"),
+}
+
 const config_file = fs.readFileSync('config.json');
 const config = JSON.parse(config_file);
-const client = createClient(config.account)
+const client = createClient(config.account, app_config)
 const api_key = config.chatgpt.apikey;
 const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
-client.on("system.login.qrcode", function (e) {
-    //扫码后按回车登录
-    process.stdin.once("data", () => {
-      this.login()
-    })
-}).login()
-client.on("system.online", () => console.log("Logged in!"))
+if(config.password.length < 6) {
+    client.on("system.login.qrcode", function (e) {
+        //扫码后按回车登录
+        process.stdin.once("data", () => {
+          this.login()
+        })
+    }).login()
+    client.on("system.online", () => console.log("Logged in!"))
+}
+else {
+    client.on("system.login.slider", function (e) {
+        console.log("输入ticket：")
+        process.stdin.once("data", ticket => this.submitSlider(String(ticket).trim()))
+    }).login(config.password)
+}
 
 client.on("message.group", message => {
     if(message.group_id in config == false 

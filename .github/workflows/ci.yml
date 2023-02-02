@@ -1,0 +1,33 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ node ]
+  pull_request:
+    branches: [ node ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install -g pkg
+      - run: npm install
+      - run: mkdir bin
+      - run: npx pkg qq.js -o bin/qqbot_linux_x64 -t node16-linux-x64
+      - run: npx pkg qq.js -o bin/qqbot_windows_x64 -t node16-win-x64
+      - name: Get Binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: bin
+          path: bin
